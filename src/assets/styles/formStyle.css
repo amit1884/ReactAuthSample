@@ -1,0 +1,29 @@
+.form {
+  width: 500px;
+}
+.custom-input {
+  width: 450px;
+  padding: 15px 10px;
+  margin: 10px;
+  border: none;
+  box-shadow: 1px 1px 3px lightgray;
+  background-color: #fff;
+}
+.custom-input:focus {
+  outline: none;
+}
+.form-card {
+  width: 500px;
+}
+.form label {
+  margin-left: 10px;
+}
+
+.auth-btn {
+  background-color: dodgerblue;
+  color: #fff;
+  width: 490px;
+}
+.auth-btn:hover {
+  background-color: rgb(93, 162, 231);
+}

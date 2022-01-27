@@ -1,0 +1,22 @@
+.custom-card {
+  background-color: #fff;
+  min-width: 200px;
+  width: auto;
+  height: auto;
+  min-height: 100px;
+  border-radius: 2px;
+  box-shadow: 0 0 5px lightgray;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.card-header {
+  min-height: 50px;
+  padding-left: 10px;
+}
+.card-footer {
+  min-height: 23px;
+  height: auto;
+  padding-left: 10px;
+  margin-top: 5px;
+}

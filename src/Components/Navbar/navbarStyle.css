@@ -1,0 +1,26 @@
+.navbar-container {
+  background-color: dodgerblue;
+  color: #fff;
+  min-height: 40px;
+}
+
+.brand {
+  margin-left: 20px;
+}
+.logout-btn {
+  border: none;
+  background-color: orangered;
+  color: #fff;
+}
+
+.logout-btn:focus {
+  outline: none;
+}
+.logout-btn:hover {
+  background-color: orange;
+}
+.custom-select {
+  height: 35px;
+  border: none;
+  outline: none;
+}

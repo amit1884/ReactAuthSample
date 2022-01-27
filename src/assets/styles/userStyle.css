@@ -1,0 +1,13 @@
+.user-card {
+  width: 400px;
+}
+.user-detail-table {
+  width: 100%;
+}
+.user-detail-table tr {
+  padding: 10px;
+  margin: 10px;
+}
+.user-detail-table tr td {
+  padding: 15px;
+}

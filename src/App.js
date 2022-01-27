@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useContext, useEffect, useReducer } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { routes } from "./routes";
+import "./App.css";
+import { initialState, userReducer } from "./redux/Reducers/userReducer";
 
-function App() {
+export const UserContext = createContext();
+const Routing = () => {
+  const { dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const isAuthenticated = () => {
+    const token = Cookies.get("auth-token");
+    if (token) {
+      const userData = JSON.parse(Cookies.get("userData"));
+
+      dispatch({ type: "USER", payload: userData });
+    } else {
+      navigate("/auth", { replace: true });
+    }
+  };
+  useEffect(() => {
+    isAuthenticated();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {routes.map((route, idx) => {
+        return (
+          <Routes key={idx}>
+            <Route path={route.path} element={route.ele} />
+          </Routes>
+        );
+      })}
+    </>
+  );
+};
+function App() {
+  const [state, dispatch] = useReducer(userReducer, initialState);
+  return (
+    <UserContext.Provider value={{ state, dispatch }}>
+      <BrowserRouter>
+        <Routing />
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 
