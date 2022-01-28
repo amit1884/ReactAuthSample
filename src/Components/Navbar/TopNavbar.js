@@ -1,18 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
 import { changeLanguage } from "i18next";
 import { useTranslation } from "react-i18next";
 
 import "./navbarStyle.css";
+import { useDispatch } from "react-redux";
+import { userAction } from "../../redux/slices/userSlice";
 
 function TopNavbar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const { dispatch } = useContext(UserContext);
   const [lang, setLang] = useState(Cookies.get("lang"));
+
+  // const googleTranslateElementInit = () => {
+  //   new window.google.translate.TranslateElement(
+  //     {
+  //       pageLanguage: "en",
+  //       layout: window.google.translate.TranslateElement.FloatPosition.TOP_LEFT,
+  //     },
+  //     "google_translate_element"
+  //   );
+  // };
+  // useEffect(() => {
+  //   var addScript = document.createElement("script");
+  //   addScript.setAttribute(
+  //     "src",
+  //     "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  //   );
+  //   document.body.appendChild(addScript);
+  //   window.googleTranslateElementInit = googleTranslateElementInit;
+  // }, []);
 
   const changeLanguageHandler = (e) => {
     setLang(e.target.value);
@@ -23,7 +43,7 @@ function TopNavbar() {
   const logoutHandler = () => {
     Cookies.remove("auth-token");
     Cookies.remove("userData");
-    dispatch({ type: "REMOVE_USER" });
+    dispatch(userAction.removeUser());
     navigate("/auth");
   };
 
@@ -44,6 +64,8 @@ function TopNavbar() {
           <option value="nl">Dutch</option>
           <option value="hi">Hindi</option>
         </select>
+        {/* <div id="google_translate_element" style={{ display: "inline" }}></div> */}
+
         {Cookies.get("auth-token") && (
           <button className="logout-btn" onClick={logoutHandler}>
             {t("logout")}

@@ -59,3 +59,9 @@ button:focus {
 .pb-10 {
   padding-bottom: 10px;
 }
+/* .goog-logo-link {
+  display: none;
+} */
+.goog-te-banner {
+  display: none !important;
+}

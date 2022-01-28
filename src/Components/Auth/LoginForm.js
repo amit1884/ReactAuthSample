@@ -1,7 +1,8 @@
 import Cookies from "js-cookie";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
+import { userAction } from "../../redux/slices/userSlice";
 import Card from "../Elements/Card/Card";
 import CardBody from "../Elements/Card/CardBody";
 import CardFooter from "../Elements/Card/CardFooter";
@@ -15,7 +16,7 @@ function LoginForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { dispatch } = useContext(UserContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const EmailHandler = (e) => {
@@ -53,7 +54,7 @@ function LoginForm(props) {
       console.log(data);
       Cookies.set("auth-token", data.token);
       Cookies.set("userData", JSON.stringify(data.user));
-      dispatch({ type: "USER", payload: data.user });
+      dispatch(userAction.addUser(data.user));
       navigate("/");
     } catch (err) {
       console.log(err);

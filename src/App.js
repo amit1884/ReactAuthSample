@@ -1,48 +1,19 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import { routes } from "./routes";
+import React from "react";
+
+import { BrowserRouter } from "react-router-dom";
+
+import { Provider } from "react-redux";
+import store from "./redux";
+import Routing from "./routes/Routing";
 import "./App.css";
-import { initialState, userReducer } from "./redux/Reducers/userReducer";
 
-export const UserContext = createContext();
-const Routing = () => {
-  const { dispatch } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const isAuthenticated = () => {
-    const token = Cookies.get("auth-token");
-    if (token) {
-      const userData = JSON.parse(Cookies.get("userData"));
-
-      dispatch({ type: "USER", payload: userData });
-    } else {
-      navigate("/auth", { replace: true });
-    }
-  };
-  useEffect(() => {
-    isAuthenticated();
-  }, []);
-  return (
-    <>
-      {routes.map((route, idx) => {
-        return (
-          <Routes key={idx}>
-            <Route path={route.path} element={route.ele} />
-          </Routes>
-        );
-      })}
-    </>
-  );
-};
 function App() {
-  const [state, dispatch] = useReducer(userReducer, initialState);
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
+    <Provider store={store}>
       <BrowserRouter>
         <Routing />
       </BrowserRouter>
-    </UserContext.Provider>
+    </Provider>
   );
 }
 
