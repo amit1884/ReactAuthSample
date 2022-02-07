@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./config/translatorConfig";
+import "./config/MultiLanguage/translatorConfig";
 
 // append app to dom
 ReactDOM.render(

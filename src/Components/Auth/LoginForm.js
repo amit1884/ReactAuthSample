@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userAction } from "../../redux/slices/userSlice";
@@ -12,7 +13,9 @@ import Input from "../Elements/Input/Input";
 import Container from "../Layout/Container/Container";
 
 function LoginForm(props) {
-  const { setActiveForm } = props;
+  // const { setActiveForm } = props;
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -65,7 +68,7 @@ function LoginForm(props) {
     <Container>
       <Card className="form-card">
         <CardHeader className="text-center">
-          <h3>Login</h3>
+          <h3>{t("login")}</h3>
         </CardHeader>
         <CardBody>
           <form
@@ -74,12 +77,12 @@ function LoginForm(props) {
           >
             <div>
               <div>
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("email")}</label>
               </div>
               <Input
                 id="email"
                 type="text"
-                placeholder="Email"
+                placeholder={t("email")}
                 value={email}
                 onChange={EmailHandler}
                 required={true}
@@ -87,12 +90,12 @@ function LoginForm(props) {
             </div>
             <div>
               <div>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">{t("password")}</label>
               </div>
               <Input
                 id="password"
                 type="password"
-                placeholder="Password"
+                placeholder={t("password")}
                 value={password}
                 onChange={PasswordHandler}
                 required={true}
@@ -100,18 +103,18 @@ function LoginForm(props) {
             </div>
             <div>
               <Button type="submit" className="auth-btn">
-                {loading ? "Loading..." : "Login"}
+                {loading ? t("loading") + "..." : t("login")}
               </Button>
             </div>
           </form>
         </CardBody>
         <CardFooter>
           <p
-            onClick={() => setActiveForm("register")}
+            onClick={() => props.setActiveForm("register")}
             style={{ cursor: "pointer" }}
           >
             {" "}
-            Don't have an account ? Register here
+            {t("register_text")} ? {t("register")} {t("here")}
           </p>
         </CardFooter>
       </Card>

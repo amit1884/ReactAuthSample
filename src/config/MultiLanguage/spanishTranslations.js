@@ -1,0 +1,17 @@
+export const spansihTranslations = {
+  spanish: "española",
+  app_name: "Reaccionar autenticación",
+  login: "acceso",
+  register: "Registrarse",
+  logout: "cerrar sesión",
+  name: "nombre",
+  email: "Email",
+  password: "contraseña",
+  organisation: "organización",
+  designation: "designacion",
+  user_detail: "detalle del usuario",
+  register_text: "no tengo una cuenta",
+  login_text: "Ya tienes una cuenta",
+  here: "aquí",
+  loading: "cargando",
+};

@@ -50,7 +50,7 @@ function TopNavbar() {
   return (
     <nav className="p-10 navbar-container d-flex align-items-center justify-content-around">
       <div className="brand">
-        <h3>{t("header")}</h3>
+        <h3>{t("app_name")}</h3>
       </div>
       <div className="links-container">
         <select
@@ -58,13 +58,13 @@ function TopNavbar() {
           value={lang}
           onChange={changeLanguageHandler}
         >
-          <option value="en">English</option>
-          <option value="es">Spanish</option>
+          <option value="en">{t("english")}</option>
+          <option value="es">{t("spanish")}</option>
           <option value="fr">French</option>
           <option value="nl">Dutch</option>
           <option value="hi">Hindi</option>
         </select>
-        {/* <div id="google_translate_element" style={{ display: "inline" }}></div> */}
+        {/* <div id="google_translate_element"></div> */}
 
         {Cookies.get("auth-token") && (
           <button className="logout-btn" onClick={logoutHandler}>

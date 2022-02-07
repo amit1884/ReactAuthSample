@@ -1,0 +1,17 @@
+export const englishTranslations = {
+  english: "English",
+  app_name: "React Auth",
+  login: "Login",
+  register: "Register",
+  logout: "Logout",
+  name: "Name",
+  email: "Email",
+  password: "Password",
+  organisation: "Organisation",
+  designation: "Designation",
+  user_detail: "User Details",
+  register_text: "Don't have an account",
+  login_text: "Already have an account",
+  here: "here",
+  loading: "cargando",
+};

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Card from "../Elements/Card/Card";
 import CardBody from "../Elements/Card/CardBody";
 import CardFooter from "../Elements/Card/CardFooter";
@@ -8,6 +9,7 @@ import Input from "../Elements/Input/Input";
 import Container from "../Layout/Container/Container";
 function RegisterForm(props) {
   const { setActiveForm } = props;
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [field, setField] = useState({
     fullName: "",
@@ -61,7 +63,7 @@ function RegisterForm(props) {
     <Container>
       <Card>
         <CardHeader className="text-center">
-          <h2>Register</h2>
+          <h2>{t("register")}</h2>
         </CardHeader>
         <CardBody>
           <form
@@ -70,12 +72,12 @@ function RegisterForm(props) {
           >
             <div>
               <div>
-                <label htmlFor="fullName">Full Name</label>
+                <label htmlFor="fullName">{t("name")}</label>
               </div>
               <Input
                 id="fullName"
                 type="text"
-                placeholder="Full Name"
+                placeholder={t("name")}
                 value={field.fullName}
                 onChange={onChangeHandler}
                 required={true}
@@ -83,12 +85,12 @@ function RegisterForm(props) {
             </div>
             <div>
               <div>
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("email")}</label>
               </div>
               <Input
                 id="email"
                 type="email"
-                placeholder="Email"
+                placeholder={t("email")}
                 value={field.email}
                 onChange={onChangeHandler}
                 required={true}
@@ -96,12 +98,12 @@ function RegisterForm(props) {
             </div>
             <div>
               <div>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">{t("password")}</label>
               </div>
               <Input
                 id="password"
                 type="password"
-                placeholder="Password"
+                placeholder={t("password")}
                 value={field.password}
                 onChange={onChangeHandler}
                 required={true}
@@ -122,12 +124,12 @@ function RegisterForm(props) {
             </div>
             <div>
               <div>
-                <label htmlFor="organisation">Organisation</label>
+                <label htmlFor="organisation">{t("organisation")}</label>
               </div>
               <Input
                 id="organisation"
                 type="text"
-                placeholder="Organisation"
+                placeholder={t("organisation")}
                 value={field.organisation}
                 onChange={onChangeHandler}
                 required={true}
@@ -135,12 +137,12 @@ function RegisterForm(props) {
             </div>
             <div>
               <div>
-                <label htmlFor="designation">Designation</label>
+                <label htmlFor="designation">{t("designation")}</label>
               </div>
               <Input
                 id="designation"
                 type="text"
-                placeholder="Designation"
+                placeholder={t("designation")}
                 value={field.designation}
                 onChange={onChangeHandler}
                 required={true}
@@ -148,7 +150,7 @@ function RegisterForm(props) {
             </div>
             <div>
               <Button type="submit" className="auth-btn">
-                {loading ? "Loading...." : "Register"}
+                {loading ? t("loading") + "..." : t("register")}
               </Button>
             </div>
           </form>
@@ -159,7 +161,7 @@ function RegisterForm(props) {
             style={{ cursor: "pointer" }}
           >
             {" "}
-            Already have an account ? Login Here
+            {t("login_text")} ? {t("login")} {t("here")}
           </p>
         </CardFooter>
       </Card>
